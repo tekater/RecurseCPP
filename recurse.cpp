@@ -60,6 +60,13 @@ string Stars(int i) {
 		return a + Stars(i-1);
 	}
 }
+void Star(int i) {
+	if (i == 0) {
+		return;
+	}
+	cout << "*";
+	return Star(i - 1);
+}
 
 int diapozon(int a, int b) {
 	if (a == b) {
@@ -104,12 +111,15 @@ int main()
 
 	cout << "Степень: " << PowR(2, 3) << endl;
 	cout << "Звёзды: " << Stars(5) << endl;	//2
-	cout << "Диапозон: " << diapozon(2, 10) << endl;//3	
+	cout << "Звёзды: "; Star(10);			//2
+	cout << "\nДиапозон: " << diapozon(2, 10) << endl;//3	
 
 	int arr2[mmr] = {};
 	for (int i = 0; i < mmr; i++) {
 		arr2[i] = 1 + rand() % 100;
 	}
 	cout << "Счётчик: " << counter(arr2, 10,0,0) << endl; //4
+
+	
 
 }
