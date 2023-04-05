@@ -35,7 +35,7 @@ int Sum(int i, int arr[]) {
 	}
 }
 
-int PowR(int i,int n) {
+int PowR(int i, int n) {
 	if (n == 1) {
 		return i;
 	}
@@ -51,16 +51,17 @@ int PowR(int i,int n) {
 	}
 }
 
-char Stars(int i) {
-	if (i == 0) {
-		return 42;
+string Stars(int i) {
+	string a = "*";
+	if (i == 1) {
+		return a;
 	}
 	else {
-		return 42 * Stars(i - 1);
+		return a + Stars(i-1);
 	}
 }
 
-int diapozon(int a,int b) {
+int diapozon(int a, int b) {
 	if (a == b) {
 		return a;
 	}
@@ -69,22 +70,22 @@ int diapozon(int a,int b) {
 	}
 }
 
-int counter(int arr[],int i) {
-	int count = 0; int temp = 0;
+int counter(int arr[], int i, int z, int count, int temp = 0) {
 	int sum = 0;
-	for (int j = 0; j < i; j++) {
+	for (int j = z; j < i; j++) {
 		sum += arr[j];
 	}
-	if (sum > temp) {
-		count++;
-	}
-	temp = sum;
-	sum = 0;
-	if (i == 0) {
+
+	if (i == 100) {
 		return count;
 	}
 	else {
-		return counter(arr, i - 10);
+		if (sum > temp) {
+			return count + counter(arr, i + 10, z + 10, count + 1, temp = sum);
+		}
+		else {
+			return count + counter(arr, i + 10, z + 10, count ,temp = sum);
+		}
 	}
 }
 
@@ -102,20 +103,13 @@ int main()
 	cout << "Сумма: " << Sum(0, arr) << endl;
 
 	cout << "Степень: " << PowR(2, 3) << endl;
-	cout << "Звёзды: " << Stars(5) << endl;
-	cout << "Диапозон: " << diapozon(2, 10) << endl;
+	cout << "Звёзды: " << Stars(5) << endl;	//2
+	cout << "Диапозон: " << diapozon(2, 10) << endl;//3	
 
 	int arr2[mmr] = {};
 	for (int i = 0; i < mmr; i++) {
-		arr2[i] = 1 + rand() % 10;
+		arr2[i] = 1 + rand() % 100;
 	}
-
-	/*cout << "Массив: ";
-	for (int i = 0; i < mmr; i++) {
-		cout << arr2[i] << " ";
-	}
-	cout << endl;*/
-
-	cout << "Счётчик: " << counter(arr2,100) << endl;
+	cout << "Счётчик: " << counter(arr2, 10,0,0) << endl; //4
 
 }
